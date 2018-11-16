@@ -30,7 +30,7 @@ echo "$( date +'%Y/%m/%d %H:%M:%S' ) Tidying empty directories in $SOURCE"
 find "$SOURCE" -mindepth 2 -depth -not -path '*/\.*' -type d -exec rmdir -p --ignore-fail-on-non-empty {} \;
 
 echo -e "$( date +'%Y/%m/%d %H:%M:%S' ) rclone $CONFIG_OPTS $COMMAND $COMMAND_OPTS $SOURCE $DESTINATION"
-rclone $CONFIG_OPTS $COMMAND $COMMAND_OPTS $SOURCE $DESTINATION
+rclone $CONFIG_OPTS $COMMAND $COMMAND_OPTS "$SOURCE" "$DESTINATION"
 
 if [[ ! -z "$HEALTH_URL" ]]; then
   echo "$( date +'%Y/%m/%d %H:%M:%S' ) Pinging $HEALTH_URL"
