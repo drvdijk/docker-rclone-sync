@@ -25,9 +25,11 @@ lock() {
 echo "$( date +'%Y/%m/%d %H:%M:%S' ) Checking process lock"
 lock || exit 1
 
-# Clean up empty directories in order to speed up rclone
-echo "$( date +'%Y/%m/%d %H:%M:%S' ) Tidying empty directories in $SOURCE"
-find "$SOURCE" -mindepth 2 -depth -not -path '*/\.*' -type d -exec rmdir -p --ignore-fail-on-non-empty {} \;
+if [[ "$CLEAN_EMPTY_DIRS" == "1" ]]; then
+  # Clean up empty directories in order to speed up rclone
+  echo "$( date +'%Y/%m/%d %H:%M:%S' ) Tidying empty directories in $SOURCE"
+  find "$SOURCE" -mindepth 2 -depth -not -path '*/\.*' -type d -exec rmdir -p --ignore-fail-on-non-empty {} \;
+fi
 
 echo -e "$( date +'%Y/%m/%d %H:%M:%S' ) rclone $CONFIG_OPTS $COMMAND $COMMAND_OPTS $SOURCE $DESTINATION"
 rclone $CONFIG_OPTS $COMMAND $COMMAND_OPTS "$SOURCE" "$DESTINATION"

@@ -6,6 +6,7 @@ Perform an [rclone](http://rclone.org) command based on a cron schedule, with [h
 ```
 docker create \
   --name=rclone \
+  --env CLEAN_EMPTY_DIRS="1" \
   --env COMMAND="sync" \
   --env COMMAND_OPTS="-v" \
   --env CRON="0 * * * *" \
@@ -22,6 +23,7 @@ docker create \
 The parameters are split into two halves, separated by a colon, the left hand side representing the host and the right the container side. 
 ```
 --volume /config - config file and for rclone
+--env CLEAN_EMPTY_DIRS - Defaults to "1". Will remove empty directories from source before running rclone.
 --env COMMAND - The command to run. Defaults to "sync"
 --env COMMAND_OPTS - additional options for rclone command. Defaults to `-v`
 --env CRON - cron schedule, defaults to hourly
