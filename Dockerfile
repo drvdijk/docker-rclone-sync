@@ -4,6 +4,7 @@ ARG BUILD_DATE
 ENV VERSION 1.0.0
 LABEL build_version="RadPenguin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
+ENV CLEAN_EMPTY_DIRS=1
 ENV COMMAND=sync
 ENV COMMAND_OPTS=-v
 ENV CONFIG_OPTS="--config /config/rclone.conf"
