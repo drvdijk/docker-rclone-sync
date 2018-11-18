@@ -18,7 +18,7 @@ echo "" > /rclone.log
 
 if [[ "$CRON_ENABLED" != "1" ]]; then
   echo "$( date +'%Y/%m/%d %H:%M:%S' ) Running rclone"
-  /rclone.sh >> /rclone.log 2>&1
+  /rclone.sh | tee /rclone.log 2>&1
 else
   # Setup a crontab for the root user
   echo "$( date +'%Y/%m/%d %H:%M:%S' ) Setting up cron"
