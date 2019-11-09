@@ -1,8 +1,8 @@
-FROM radpenguin/rclone:latest
+FROM drvdijk/rclone:latest
 
 ARG BUILD_DATE
 ENV VERSION 1.0.0
-LABEL build_version="RadPenguin version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL build_version="drvdijk rclone-sync version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
 ENV CLEAN_EMPTY_DIRS=1
 ENV COMMAND=sync
@@ -12,7 +12,7 @@ ENV CRON="0 * * * *"
 ENV DESTINATION=
 ENV HEALTH_URL=
 ENV SOURCE=/source
-ENV TZ="America/Edmonton"
+ENV TZ="Europe/Amsterdam"
 
 RUN \
   echo "**** install runtime packages ****" && \
