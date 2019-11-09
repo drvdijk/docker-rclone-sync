@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPO_NAME=radpenguin/rclone-sync
+REPO_NAME=drvdijk/rclone-sync
 
 BUILD_DATE=$( date +"%Y-%m-%d-%H-%M-%S" )
 

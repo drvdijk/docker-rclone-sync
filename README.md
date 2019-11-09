@@ -14,9 +14,9 @@ docker create \
   --env DESTINATION="gdrive:media" \
   --env HEALTH_URL=http://example.com/asdf1234 \
   --env SOURCE=/source \
-  --env TZ="America/Edmonton" \
+  --env TZ="Europe/Amsterdam" \
   --volume <path to data>:/config \
-  radpenguin/rclone
+  drvdijk/rclone
 ```
 
 ## Parameters
