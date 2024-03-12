@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on:
+  push:
+
+env:
+  TEST_TAG: drvdijk/docker-rclone-sync:test
+  LATEST_TAG: drvdijk/docker-rclone-sync:latest
+
+jobs:
+  build:
+    name: Build docker-rclone-sync image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Lint
+        uses: hadolint/hadolint-action@v3.1.0
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          load: true
+          tags: ${{ env.TEST_TAG }}
+      - name: Show version
+        run: |
+          docker run --rm ${{ env.TEST_TAG }}
