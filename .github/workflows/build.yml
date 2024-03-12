@@ -4,8 +4,7 @@ on:
   push:
 
 env:
-  TEST_TAG: drvdijk/docker-rclone-sync:test
-  LATEST_TAG: drvdijk/docker-rclone-sync:latest
+  TEST_TAG: drvdijk/rclone-sync:test
 
 jobs:
   build:

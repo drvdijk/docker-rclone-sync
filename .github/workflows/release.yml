@@ -6,7 +6,7 @@ on:
       - published
 
 env:
-  LATEST_TAG: drvdijk/docker-rclone-sync:latest
+  LATEST_TAG: drvdijk/rclone-sync:latest
 
 jobs:
   build:
