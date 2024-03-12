@@ -11,6 +11,7 @@ echo $TZ > /etc/timezone
 if [[ $( rclone $CONFIG_OPTS config show | grep "empty config" | wc -l ) != "0" ]]; then
   echo "$( date +'%Y/%m/%d %H:%M:%S' ) Empty rclone config, only showing version"
   rclone version
+  exit 0
 fi
 
 # Trim the log
