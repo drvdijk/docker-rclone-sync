@@ -1,0 +1,30 @@
+name: Docker Image Release
+
+on:
+  release:
+    types:
+      - published
+
+env:
+  LATEST_TAG: drvdijk/docker-rclone-sync:latest
+
+jobs:
+  build:
+    name: Lint and build Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Lint
+        uses: hadolint/hadolint-action@v3.1.0
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ env.LATEST_TAG }}
