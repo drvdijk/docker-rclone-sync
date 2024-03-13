@@ -1,4 +1,4 @@
-FROM rclone/rclone:1.66.0
+FROM rclone/rclone:beta
 
 ARG BUILD_DATE
 ENV VERSION 1.0.0
