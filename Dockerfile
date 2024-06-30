@@ -1,4 +1,4 @@
-FROM rclone/rclone:1.66.0
+FROM rclone/rclone:1.67.0
 
 ARG BUILD_DATE
 ENV VERSION 1.0.0
@@ -18,7 +18,7 @@ ENV TZ="Europe/Amsterdam"
 RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
-    curl=8.5.0-r0 \
+    curl=8.8.0-r0 \
     dcron=4.5-r9 && \
   echo "**** cleanup ****" && \
   rm -rf /tmp/*
