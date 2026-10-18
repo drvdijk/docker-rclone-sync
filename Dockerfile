@@ -1,10 +1,11 @@
-FROM rclone/rclone:1.67.0
+ARG RCLONE_VERSION=1.75.2
+FROM rclone/rclone:${RCLONE_VERSION}
 
 ARG BUILD_DATE
-ENV VERSION 1.0.0
+ENV VERSION=1.0.0
 LABEL build-version="drvdijk rclone-sync version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
-ENV CLEAN_EMPTY_DIRS=1
+ENV CLEAN_EMPTY_DIRS=0
 ENV COMMAND=sync
 ENV COMMAND_OPTS=-v
 ENV CONFIG_OPTS="--config /config/rclone.conf"
@@ -18,8 +19,8 @@ ENV TZ="Europe/Amsterdam"
 RUN \
   echo "**** install runtime packages ****" && \
   apk add --no-cache \
-    curl=8.8.0-r0 \
-    dcron=4.5-r9 && \
+    curl=8.22.0-r0 \
+    dcron=4.6-r0 && \
   echo "**** cleanup ****" && \
   rm -rf /tmp/*
 
