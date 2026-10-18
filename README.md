@@ -49,10 +49,9 @@ All output goes to the container's stdout/stderr, so `docker logs` (or `docker l
 
 ## Image tags
 - `:edge` — built from the latest commit on `master`. Not meant for production use, but handy for testing a fix before a release.
+- `:<branch-name>` — every push to any other branch is also built and pushed, tagged with that branch's own (Docker-sanitized) name, e.g. pushing to `modernize-image` produces `:modernize-image`. Handy for testing a branch as a real image tag without touching `:edge`. Tags are computed with [`docker/metadata-action`](https://github.com/docker/metadata-action), which takes care of sanitizing the branch name (slashes, uppercase, etc.) into something Docker accepts as a tag.
 - `:latest` and `:X.Y.Z` — built from a published GitHub release tagged `vX.Y.Z`.
 - The version number tracks the rclone version the image is built on (see `ARG RCLONE_VERSION` in the `Dockerfile`). If the image or scripts change without an rclone bump, the version gets a `-N` suffix (e.g. `1.75.2-1`, `1.75.2-2`), reset back to no suffix on the next rclone bump.
-
-Pushes on other branches are built and linted in CI, but not pushed to Docker Hub.
 
 ### Making a release
 1. Bump `ARG RCLONE_VERSION` in the `Dockerfile` if needed, following the versioning scheme above.
